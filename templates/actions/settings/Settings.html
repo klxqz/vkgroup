@@ -1,0 +1,152 @@
+
+<script>
+    $(function() {
+
+        $('#plugins-settings-form').change(function() {
+            $(this).submit();
+            
+        });
+    });
+</script>
+
+<h1>Группа Вконтакте</h1>
+<div     class="fields form">
+    <form action="?module=plugins&id=vkgroup&action=save" method="post" id="plugins-settings-form">
+        {$wa->csrf()}
+
+
+        {literal}
+        <p>{shopVkgroupPlugin::display()} - Код хелпера вывода</p>
+        {/literal}
+        <p class="gray">
+            <i class="icon16 exclamation"></i>
+            Используя этот код Вы можете осуществить вывод "Группа Вконтакте" в любом месте вашей темы оформления, это позволяет избавиться от привязки к конкретным местам вывода плагина
+        </p>
+
+
+
+        <div class="field">
+            <div class="name">
+                Статус плагина
+            </div>
+            <div class="value">
+                <select name="shop_vkgroup[status]">
+                    <option {if $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
+                    <option {if $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Вывод по умолчанию
+            </div>
+            <div class="value">
+                <select name="shop_vkgroup[default_out]">
+                    <option {if $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
+                    <option {if $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
+                </select>
+                {literal}
+                <p class="hint">Если включено плагин автоматически выводится на экран, если в этом режиме у вас возникли какие-то проблемы, тогда воспользуйтесь хелпером вывод {shopUpPlugin::display()} - разместите этот код в файле index.html перед закрывающимся тегом &lt;/body&gt;</p>
+                {/literal}
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div class="name">
+                Ссылка на страницу
+            </div>
+            <div class="value">
+                <input type="text" name="shop_vkgroup[url]" value="{$settings.url|escape}"  />
+
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Вид
+            </div>
+            <div class="value">
+                <div><input type="radio" name="shop_vkgroup[mode]" value="0" {if $settings.mode=='0'}checked="checked"{/if} /> - Участники</div>
+                <div><input type="radio" name="shop_vkgroup[mode]" value="2" {if $settings.mode=='2'}checked="checked"{/if} /> - Новости</div>
+                <div><input type="radio" name="shop_vkgroup[mode]" value="1" {if $settings.mode=='1'}checked="checked"{/if} /> - Только название</div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="name">
+                Расширенный режим
+            </div>
+            <div class="value">
+                <input type="hidden" name="shop_vkgroup[wide_mode]" value="0"/>
+                <input type="checkbox" name="shop_vkgroup[wide_mode]" value="1" {if $settings.wide_mode=='0'}checked="checked"{/if} />
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div class="name">
+                Ширина
+            </div>
+            <div class="value">
+                <input type="text" name="shop_vkgroup[width]" value="{$settings.width|escape}"  />
+                <div class="hint">Ширина блока в пикселях</div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Высота
+            </div>
+            <div class="value">
+                <input type="text" name="shop_vkgroup[height]" value="{$settings.height|escape}"  />
+                <div class="hint">Высота блока в пикселях</div>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div class="name">
+                Цвет текста
+            </div>
+            <div class="value">
+                <input type="text" name="shop_vkgroup[text_color]" value="{$settings.text_color|escape}"  />
+                <div class="hint">Цвет в шестнадцатиричном виде #000000, http://getcolor.ru/</div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Цвет кнопок
+            </div>
+            <div class="value">
+                <input type="text" name="shop_vkgroup[but_color]" value="{$settings.but_color|escape}"  />
+                <div class="hint">Цвет в шестнадцатиричном виде #000000, http://getcolor.ru/</div>
+            </div>
+        </div>
+        
+        <div class="field">
+            <div class="name">
+                Демо
+            </div>
+            <div class="value">
+                <iframe width="300" height="400" scrolling="no" frameborder="0" id="widget_preview" src="?plugin=vkgroup&action=preview"></iframe>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
