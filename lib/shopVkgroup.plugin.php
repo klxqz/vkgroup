@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Коробов Николай wa-plugins.ru <support@wa-plugins.ru>
+ * @link http://wa-plugins.ru/
+ */
 class shopVkgroupPlugin extends shopPlugin {
 
     protected static $plugin;
@@ -19,8 +23,8 @@ class shopVkgroupPlugin extends shopPlugin {
         }
     }
 
-    public function frontendFooter() {
-        if($this->getSettings('default_out')) {
+    public function frontendNav() {
+        if ($this->getSettings('default_out')) {
             return self::display();
         }
     }
@@ -29,14 +33,8 @@ class shopVkgroupPlugin extends shopPlugin {
         $up = self::getThisPlugin();
         if ($up->getSettings('status')) {
             $view = wa()->getView();
-            $img_exists = false;
-            if (file_exists(wa()->getDataPath('plugins/up/up.png', 'shop'))) {
-                $img_exists = true;
-            }
-
-            $view->assign('img_exists', $img_exists);
             $view->assign('settings', $up->getSettings());
-            $template_path = wa()->getAppPath('plugins/up/templates/Up.html', 'shop');
+            $template_path = wa()->getAppPath('plugins/vkgroup/templates/Vkgroup.html', 'shop');
             $html = $view->fetch($template_path);
             return $html;
         }
